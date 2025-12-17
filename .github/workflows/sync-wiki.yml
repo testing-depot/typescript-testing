@@ -13,7 +13,7 @@ defaults:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Get repo name
         run: R=${GITHUB_REPOSITORY%?wiki}; echo "BASENAME=${R##*/}" >> $GITHUB_ENV

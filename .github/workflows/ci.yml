@@ -36,7 +36,7 @@ jobs:
             bundle: true
 
           # Other builds (skipped in merge queues)
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             node-version: '24'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
@@ -47,7 +47,7 @@ jobs:
           - os: ubuntu-latest
             node-version: '22'
             bundle: true
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             node-version: '22'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
@@ -59,7 +59,7 @@ jobs:
           - os: ubuntu-latest
             node-version: '20'
             bundle: true
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             node-version: '20'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
@@ -71,7 +71,7 @@ jobs:
           - os: ubuntu-latest
             node-version: '18'
             bundle: true
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             node-version: '18'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
@@ -83,7 +83,7 @@ jobs:
           - os: ubuntu-latest
             node-version: '16'
             bundle: true
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             node-version: '16'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
@@ -95,7 +95,7 @@ jobs:
             node-version: '14'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             node-version: '14'
             bundle: true
             skip: ${{ github.event_name == 'merge_group' }}
@@ -141,7 +141,7 @@ jobs:
   coverage:
     if: ${{ github.event_name != 'merge_group' }}
 
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     permissions:
       id-token: write
@@ -170,7 +170,7 @@ jobs:
           files: ./coverage/codecov.json
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -183,7 +183,7 @@ jobs:
         run: npm run lint
 
   knip:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -196,7 +196,7 @@ jobs:
         run: npm run knip
 
   format:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -216,7 +216,7 @@ jobs:
         run: npx dprint check
 
   browser-integration:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -232,7 +232,7 @@ jobs:
         run: npx hereby test-browser-integration
 
   typecheck:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -245,7 +245,7 @@ jobs:
         run: npx hereby build-src
 
   smoke:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -285,7 +285,7 @@ jobs:
           node $GITHUB_WORKSPACE/scripts/checkModuleFormat.mjs typescript/lib/tsserverlibrary
 
   package-size:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     if: github.event_name == 'pull_request'
 
     steps:
@@ -327,7 +327,7 @@ jobs:
           node ./pr/scripts/checkPackageSize.mjs ./base ./pr >> $GITHUB_STEP_SUMMARY
 
   misc:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -343,7 +343,7 @@ jobs:
         run: npx hereby run-eslint-rules-tests
 
   self-check:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -364,7 +364,7 @@ jobs:
   baselines:
     if: ${{ github.event_name != 'merge_group' }}
 
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
@@ -410,7 +410,7 @@ jobs:
           path: fix_baselines.patch
 
   required:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     if: ${{ always() }}
     needs:
       - test

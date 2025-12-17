@@ -17,7 +17,7 @@ defaults:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     if: github.repository == 'microsoft/TypeScript'
 
     steps:
@@ -38,7 +38,7 @@ jobs:
 
   publish:
     needs: [test]
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     if: github.repository == 'microsoft/TypeScript'
 
     steps:
