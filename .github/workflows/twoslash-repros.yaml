@@ -48,7 +48,7 @@ defaults:
 jobs:
   run:
     if: ${{ github.repository == 'microsoft/TypeScript' }}
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - if: ${{ github.event.inputs.bisect }}
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
